@@ -10,6 +10,7 @@ use egui_plugin::EguiPlugin;
 use rapier2d_plugin::PhysicsPlugin;
 use terminal_plugin::TerminalPlugin;
 use touchpanel_plugin::TouchpanelPlugin;
+use firebase_auth_plugin::FirebaseAuthPlugin;
 use windows::WindowsPlugin;
 
 fn main() {
@@ -24,6 +25,7 @@ fn main() {
         .add_plugin(TouchpanelPlugin)
         .add_plugin(EditorPlugin)
         .add_plugin(TerminalPlugin)
+        .add_plugin(FirebaseAuthPlugin)
         .add_plugin(WindowsPlugin)
         .add_plugin(AboutPlugin)
         .insert_resource(Msaa { samples: 4 })
@@ -41,7 +43,7 @@ fn main() {
 
 fn setup_cameras(mut commands: Commands) {
     commands.spawn_bundle(Camera2dBundle::default());
-    commands.spawn_bundle(Camera3dBundle::default());
+    // commands.spawn_bundle(Camera3dBundle::default());
 }
 
 #[cfg(target_arch = "wasm32")]

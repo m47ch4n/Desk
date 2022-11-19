@@ -10,8 +10,68 @@
       }
     </style>
   </head>
-  <script type="module">
-    import init from './desk-x.js'
-    init()
-  </script>
+  <body>
+    <script type="module">
+      import init, { on_signed_in } from './desk-x.js'
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
+      import { getAuth, onAuthStateChanged, signInWithPopup, signOut,
+        GoogleAuthProvider, GithubAuthProvider } from 'https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js'
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyAgvEG5-R5gs-fx4aU2-2kSYeTlEpUFKOw",
+        authDomain: "hihaheho-e58a7.firebaseapp.com",
+        projectId: "hihaheho-e58a7",
+        storageBucket: "hihaheho-e58a7.appspot.com",
+        messagingSenderId: "571260489236",
+        appId: "1:571260489236:web:d9c0ed1d146c7e8c47a101",
+        measurementId: "G-7SD3QPBNR9"
+      };
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          console.log("signed", user);
+          on_signed_in();
+        } else {
+          console.log("signed out", user);
+        }
+      });
+
+      window.sign_in_with_google = () => {
+        signInWithPopup(auth, new GoogleAuthProvider())
+          .then((result) => {
+            const credential = GoogleAuthProvider.credentialFromResult(result);
+            const token = credential.accessToken;
+            const user = result.user;
+            console.log("signed with google", token, user);
+          }).catch((error) => {
+            const { code, message } = error;
+            console.error("cannot sign in via google", code, message);
+          })
+      };
+
+      window.sign_in_with_github = () => {
+        signInWithPopup(auth, new GithubAuthProvider())
+          .then((result) => {
+            const credential = GithubAuthProvider.credentialFromResult(result);
+            const token = credential.accessToken;
+            const user = result.user;
+            console.log("signed with github", token, user);
+          }).catch((error) => {
+            const { code, message } = error;
+            console.error("cannot sign in via github", code, message);
+          })
+      };
+
+      window.sign_out = () => {
+        signOut(auth).then(() => {
+          console.log("successfully signed out");
+        }).catch((error) => {
+          console.log("failed to sign out");
+        })
+      }
+
+      init();
+    </script>
+  </body>
 </html>

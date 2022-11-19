@@ -1,8 +1,20 @@
 [package]
 name = "desk-firebase-auth"
-version = "0.1.0"
+version = "0.0.0"
+license = "MIT OR Apache-2.0"
+description = "The application platform for your cyberpunk desk"
+homepage = "https://github.com/Hihaheho/Desk"
+repository = "https://github.com/Hihaheho/Desk"
+readme = "../../../README.md"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+desk-window = { package = "desk-window", path = "../../components/desk-window", version = "0.0.0" }
+bevy = "0.8.1"
+egui = "0.19.0"
+web-sys = { version = "0.3.60", features = ["Window"] }
+js-sys = "0.3.60"
+wasm-bindgen = "0.2.83"
+once_cell = "1.16.0"

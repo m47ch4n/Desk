@@ -17,6 +17,7 @@ rapier2d-plugin = { path = "../../plugins/desk-rapier2d", version = "0.0.0", pac
 touchpanel-plugin = { path = "../../plugins/desk-touchpanel", version = "0.0.0", package = "desk-touchpanel" }
 editor-plugin = { path = "../../plugins/desk-editor", version = "0.0.0", package = "desk-editor" }
 terminal-plugin = { path = "../../plugins/desk-terminal", version = "0.0.0", package = "desk-terminal" }
+firebase-auth-plugin = { path = "../../plugins/desk-firebase-auth", version = "0.0.0", package = "desk-firebase-auth" }
 
 desk-window = { package = "desk-window", path = "../../components/desk-window", version = "0.0.0" }
 desk-system-ordering = { package = "desk-system-ordering", path = "../../components/desk-system-ordering", version = "0.0.0" }
