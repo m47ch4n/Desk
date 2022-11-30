@@ -12,7 +12,7 @@
   </head>
   <body>
     <script type="module">
-      import init, { on_signed_in } from './desk-x.js'
+      import init, { on_signed_in, on_signed_out } from './desk-x.js'
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
       import { getAuth, onAuthStateChanged, signInWithPopup, signOut,
         GoogleAuthProvider, GithubAuthProvider } from 'https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js'
@@ -31,7 +31,7 @@
       onAuthStateChanged(auth, (user) => {
         if (user) {
           console.log("signed", user);
-          on_signed_in();
+          on_signed_in(user.email, user.displayName);
         } else {
           console.log("signed out", user);
         }
@@ -65,6 +65,7 @@
 
       window.sign_out = () => {
         signOut(auth).then(() => {
+          on_signed_out();
           console.log("successfully signed out");
         }).catch((error) => {
           console.log("failed to sign out");

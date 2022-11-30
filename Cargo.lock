@@ -1570,7 +1570,7 @@ dependencies = [
  "desk-window",
  "egui 0.19.0",
  "js-sys",
- "once_cell",
+ "parking_lot 0.12.1",
  "wasm-bindgen",
  "web-sys",
 ]
